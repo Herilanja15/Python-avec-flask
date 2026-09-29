@@ -1,0 +1,2 @@
+docker compose up --build 
+puis CTRL + clique sur le lien htp:// qui s'affiche en premier
