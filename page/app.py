@@ -7,10 +7,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
 
-    # Récupération automatique des photos
-    photos_folder = Path(
-        app.static_folder
-    ) / "photos"
+    photos_folder = Path(app.static_folder) / "photos"
 
     extensions = {
         ".jpg",
@@ -19,12 +16,15 @@ def index():
         ".webp"
     }
 
-    photos = sorted([
-        photo.name
-        for photo in photos_folder.iterdir()
-        if photo.is_file()
-        and photo.suffix.lower() in extensions
-    ])
+    photos = []
+
+    if photos_folder.exists():
+        photos = sorted(
+            photo.name
+            for photo in photos_folder.iterdir()
+            if photo.is_file()
+            and photo.suffix.lower() in extensions
+        )
 
     return render_template(
         "index.html",
@@ -33,9 +33,7 @@ def index():
 
 
 if __name__ == "__main__":
-
     app.run(
-        debug=True,
         host="0.0.0.0",
         port=5000
     )
