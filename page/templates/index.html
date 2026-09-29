@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Pardon ❤️</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <main class="page">
+
+    
+
+        <header class="header">
+
+            <h1>
+                Pardon <span>♥</span>
+            </h1>
+
+            <p>
+                Désolé pour toutes les fois où j'ai merdé. Je voulais être ta paix, mais je t'ai parfois apporté le contraire. 
+               <p>Je t'aime et je regrette sincèrement mes erreurs. ❤️</p> 
+            </p>
+
+        </header>
+
+
+    
+
+        <section class="gallery">
+
+            <div class="photos">
+
+                {% for photo in photos %}
+
+                    <div
+                        class="photo"
+                        data-index="{{ loop.index0 }}"
+                    >
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='photos/' + photo
+                            ) }}"
+                            alt="Souvenir {{ loop.index }}"
+                        >
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+
+        <div class="controls">
+
+            <button
+                id="previous"
+                class="nav-button"
+                aria-label="Photo précédente"
+            >
+                ‹
+            </button>
+
+
+            <span
+                id="counter"
+                class="counter"
+            >
+                1 / {{ photos|length }}
+            </span>
+
+
+            <button
+                id="next"
+                class="nav-button"
+                aria-label="Photo suivante"
+            >
+                ›
+            </button>
+
+        </div>
+
+
+      
+
+        <p class="bottom-message">
+            ♥
+        </p>
+
+    </main>
+
+
+    <script
+        src="{{ url_for(
+            'static',
+            filename='js/script.js'
+        ) }}"
+    ></script>
+
+</body>
+
+</html>
